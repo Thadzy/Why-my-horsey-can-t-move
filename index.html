@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan</title>
+    <link rel="icon" href="https://pbs.twimg.com/media/BXOIdGiIQAAKir6.jpg" type="image/x-icon">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+
+        /* Header */
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+
+        .header h1 {
+            margin: 0;
+        }
+
+
+        /* Navigation */
+        .navbar {
+            background-color: #b9501e;
+            padding: 5px;
+        }
+
+
+        .navbar-toggle {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 24px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+        }
+
+
+        .navbar-toggle-bar {
+            width: 100%;
+            height: 3px;
+            background-color: #fff;
+        }
+
+
+        .navbar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+            padding-left: 0;
+            list-style-type: none;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+
+        .navbar-menu-item {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+
+        .navbar-menu-item a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        .navbar.show .navbar-menu {
+            opacity: 1;
+            max-height: 500px;
+        }
+
+
+        .navbar.show .navbar-menu-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('https://cdn.pixabay.com/photo/2017/04/02/19/57/horse-2196755_960_720.jpg');
+            background-size: cover;
+            height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+
+        .hero-section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+
+        .hero-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+
+        /* Creature Section */
+        .creature-section {
+            padding: 40px;
+        }
+
+
+        .creature-section h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+
+        .creature-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .rotate-image {
+            width: 200px;
+            /* Adjust size as needed */
+            height: 200px;
+            transition: transform 0.5s ease;
+            /* Define animation properties */
+        }
+
+
+        .rotate-image:hover {
+            transform: rotate(360deg);
+            /* Apply the animation on hover */
+        }
+
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        .slide-in {
+            transform: translateX(-100%);
+            animation: slideIn 1s ease-in-out forwards;
+        }
+
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+
+        .content {
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slide-in 1s ease forwards;
+        }
+
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+
+        .hidden {
+            opacity: 0;
+            transition: all 1s;
+        }
+
+
+        .show {
+            opacity: 1;
+        }
+
+
+        /* CSS to hide the section by default */
+        #section {
+            display: none;
+        }
+
+
+        /* CSS to show the section when it doesn't have the 'hidden' class */
+        #section:not(.hidden) {
+            display: block;
+        }
+
+
+        .section {
+            display: none;
+        }
+    </style>
+
+
+    <!-- Bootstrap and jQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Toggle Navigation Drawer
+        function toggleDrawer() {
+            var drawer = document.getElementById("drawer");
+            drawer.classList.toggle("active");
+        }
+
+
+        // Toggle Sections
+        function toggleSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            section.classList.toggle("active");
+        }
+    </script>
+</head>
+
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Welcome to Magical Creatures Juan!</h1>
+            <p>Because horsey are magical creatures</p>
+        </div>
+    </header>
+    <script>alert("I'll say that I've never actually used Javascript needs to be used to perform DOM-based functions, such as toggling the Navigation toggle (Drawer , bottom, stack), Animation, Section toggling...what you said. But over time I spent a lot of time studying it and doing my best. Wish I could join the beaversite :D.")</script>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="https://pbs.twimg.com/media/BXOIdGiIQAAKir6.jpg" alt="Logo"
+                    width="60" height="64"></a>
+            <a class="navbar-brand" href="#">Juan</a>
+            <button class="navbar-toggler" type="button" onclick="toggleDrawer()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" onclick="toggleDrawer()">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#creatures" onclick="toggleDrawer()">Creatures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" onclick="toggleDrawer()">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" onclick="toggleDrawer()">Contact</a>
+                    </li>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownBtn" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Navigation
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownBtn">
+                            <a class="nav-link" href="#creatures" onclick="toggleDrawer()"
+                                style="color: black;">Creatures</a>
+                            <a class="nav-link" href="#about" onclick="toggleDrawer()" style="color: black;">About</a>
+                            <a class="nav-link" href="#contact" onclick="toggleDrawer()"
+                                style="color: black;">Contact</a>
+                        </div>
+                        <!-- Dropdown button within the navbar -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <section class="hidden">
+            <div class="container">
+                <h2>Why my horsey can't move</h2>
+                <h1>Because my horsey they are magical creatures?</h1>
+                <p>Let's see why...
+                </p>
+            </div>
+        </section>
+    </section>
+
+
+    <!-- Creature Section -->
+    <section id="creatures" class="creature-section">
+        <section id="section">
+            <div class="container">
+                <section class="hidden">
+                    <h3>Meet the Creatures of Legends</h3>
+                    <p>Explore the rich lore of magical creatures from various mythologies and folktales around the
+                        world.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>UNICORN</h4>
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Unicorn" width="100%">
+                            <p>A trapped piece is a piece that has no escape squares or squares where it can safely move
+                                without
+                                being captured. A trapped piece can be a bishop, knight, rook, or queen. Pawns are not
+                                referred
+                                to as trapped due to their limited movement, and kings cannot be captured, although any
+                                checkmate is essentially a trapped king! </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>PEGASUS</h4>
+                            <img src="data:image/jpeg;base64,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"
+                                alt="Dragon" width="100%">
+                            <p>I just want to be happy </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>KNIGHT</h4>
+                            <img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/SamCopeland/phpzUwV05.png"
+                                alt="Phoenix" width="100%">
+                            <p>Trapped pieces are important to recognize because they can often be won. In the position
+                                below,
+                                we can see that Black's knight on h5 has no squares to move to without being captured.
+                            </p>
+                        </div>
+                </section>
+            </div>
+            </div>
+        </section>
+
+
+        <!-- Embed YouTube Video -->
+        <section class="hidden">
+            <div style="position: relative; padding-bottom: 56.25%; height: 0;">
+                <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls>
+                    <source src="videoplayback.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+
+        <br>
+
+
+        <section class="hidden">
+            <div style="display: flex; justify-content: center; align-items: center; height: 30vh;">
+                <iframe style="border-radius: 12px"
+                    src="https://open.spotify.com/embed/track/1fDFHXcykq4iw8Gg7s5hG9?utm_source=generator" width="80%"
+                    height="152" frameborder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>
+            <h3 style="text-align: center;">About You 1975</h3>
+            <p style="text-align: center; color: red;">***About you(IT) Camp(19)75***</p>
+        </section>
+
+
+
+
+        <!-- About Section -->
+        <section class="hidden">
+            <section id="about" class="bg-light">
+                <div class="container">
+                    <p>And there was something about you that now I can't remember
+                        It's the same damn thing that made my heart surrender
+                        And I'll miss you on a train, I'll miss you in the mornin'
+                        I never know what to think about
+                        I think about you (Don't let go)
+                        About you</p>
+                    <p>Finally message IT Camp I spend a lot of time doing this
+                        but it's not very good but it's fun doing what I love but I'm doing my best and
+                        <br>I love you too IT Camp 3000
+                    </p>
+                </div>
+            </section>
+        </section>
+
+
+        <section id="contact" class="contact-section">
+            <footer class="footer">
+                <div class="container">
+                    <p>© 2023 Magical Creatures
+                        Juan . All rights reserved.</p>
+                    <ul class="social-media-list">
+                    </ul>
+                    <a href="https://www.facebook.com/touchai.chaitouch" target="_blank"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-facebook" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                        </svg></a>
+                    <a href="https://youtu.be/mLKTQD7xHlY" target="_blank"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                            <path
+                                d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                        </svg>
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/sh.adzyt_?igshid=ZDdkNTZiNTM=" target="_blank"> <svg
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-instagram" viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                        </svg>
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                        </svg>
+                    </a>
+                </div>
+            </footer>
+        </section>
+
+
+        <!-- Script -->
+        <script>
+            // Function to toggle navigation drawer
+            function toggleDrawer() {
+                var navDrawer = document.getElementById("nav-drawer");
+                navDrawer.classList.toggle("nav-drawer-open");
+            }
+
+
+            // Add a scroll event listener to detect when the element is in the viewport
+            window.addEventListener('scroll', function () {
+                var content = document.querySelector('.content');
+                var contentPosition = content.getBoundingClientRect().top;
+                var screenHeight = window.innerHeight;
+
+
+                // If the content element is in the viewport, add the visible class to trigger the animation
+                if (contentPosition < screenHeight * 0.8) {
+                    content.classList.add('visible');
+                }
+            });
+
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => { // Fix the typo here from entrirs to entries
+                    console.log(entry);
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    } else {
+                        entry.target.classList.remove('show');
+                    }
+                });
+            });
+
+
+            const hiddenElements = document.querySelectorAll('.hidden');
+            hiddenElements.forEach((el) => observer.observe(el));
+
+
+            const navbarToggle = document.getElementById('navbarToggle');
+            const navbarMenu = document.getElementById('navbarMenu');
+
+
+            navbarToggle.addEventListener('click', () => {
+                navbarMenu.classList.toggle('show');
+            });
+
+
+            // Get the toggle section button and section element
+            const toggleSectionBtn = document.getElementById('toggleSectionBtn');
+            const section = document.getElementById('section');
+
+
+            // Add click event listener to the toggle section button
+            toggleSectionBtn.addEventListener('click', () => {
+                // Toggle the visibility of the section
+                section.classList.toggle('hidden');
+            });
+
+
+
+        </script>
+</body>
+
+
+</html>
