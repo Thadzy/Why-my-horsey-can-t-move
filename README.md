@@ -54,4 +54,4 @@ If you wish to customize the project, feel free to modify the HTML, CSS, and JS 
 
 ## License
 
-This project is licensed under the [Your License Name] - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the [Thadzy] - see the [LICENSE.md](LICENSE.md) file for details.
