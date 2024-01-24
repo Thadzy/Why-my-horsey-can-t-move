@@ -79,7 +79,6 @@
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
 
-
         .navbar-menu-item a {
             color: #fff;
             text-decoration: none;
@@ -97,10 +96,6 @@
             transform: translateY(0);
         }
 
-
-
-
-        /* Hero Section */
         .hero-section {
             background-image: url('https://cdn.pixabay.com/photo/2017/04/02/19/57/horse-2196755_960_720.jpg');
             background-size: cover;
@@ -124,7 +119,6 @@
             font-size: 18px;
             margin-bottom: 30px;
         }
-
 
         /* Creature Section */
         .creature-section {
@@ -155,7 +149,6 @@
 
         .rotate-image {
             width: 200px;
-            /* Adjust size as needed */
             height: 200px;
             transition: transform 0.5s ease;
             /* Define animation properties */
@@ -236,13 +229,10 @@
         }
 
 
-        /* CSS to hide the section by default */
         #section {
             display: none;
         }
 
-
-        /* CSS to show the section when it doesn't have the 'hidden' class */
         #section:not(.hidden) {
             display: block;
         }
@@ -252,7 +242,6 @@
             display: none;
         }
     </style>
-
 
     <!-- Bootstrap and jQuery Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -500,7 +489,7 @@
 
 
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => { // Fix the typo here from entrirs to entries
+                entries.forEach((entry) => { 
                     console.log(entry);
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
