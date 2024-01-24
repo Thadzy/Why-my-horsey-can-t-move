@@ -52,10 +52,6 @@ Explore the magical world of horses and interact with the provided functionaliti
 
 If you wish to customize the project, feel free to modify the HTML, CSS, and JS code.
 
-## Contributing
-
-Contributions to enhance the project are welcome. To contribute, please follow the guidelines outlined in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
 ## License
 
 This project is licensed under the [Your License Name] - see the [LICENSE.md](LICENSE.md) file for details.
